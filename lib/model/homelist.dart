@@ -1,6 +1,10 @@
 import 'package:best_flutter_ui_templates/design_course/home_design_course.dart';
 import 'package:best_flutter_ui_templates/fitness_app/fitness_app_home_screen.dart';
-import 'package:best_flutter_ui_templates/hotel_booking/hotel_home_screen.dart';
+import 'package:best_flutter_ui_templates/meetingroom/hotel_home_screen.dart';
+import 'package:best_flutter_ui_templates/nurse/hotel_home_screen.dart';
+// import 'package:best_flutter_ui_templates/meetingroom/hotel_home_screen.dart';
+import 'package:best_flutter_ui_templates/restroom/hotel_home_screen.dart';
+import 'package:best_flutter_ui_templates/showers/hotel_home_screen.dart';
 import 'package:flutter/widgets.dart';
 
 class HomeList {
@@ -16,23 +20,23 @@ class HomeList {
 
   static List<HomeList> homeList = [
     HomeList(
-      imagePath: 'Restroom',
+      imagePath: 'Meeting Room',
       navigateScreen: HotelHomeScreen(),
       color: 50,
     ),
     HomeList(
       imagePath: 'Nursing Room',
-      navigateScreen: FitnessAppHomeScreen(),
+      navigateScreen: nurseScreen(),
       color: 100,
     ),
     HomeList(
-      imagePath: 'Meeting Room',
-      navigateScreen: HotelHomeScreen(),
+      imagePath: 'Restrooms',
+      navigateScreen: restroomScreen(),
       color: 200,
     ),
     HomeList(
-      imagePath: 'Others',
-      navigateScreen: DesignCourseHomeScreen(),
+      imagePath: 'Showers',
+      navigateScreen: showersScreen(),
       color: 300,
     ),
   ];

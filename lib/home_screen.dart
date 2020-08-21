@@ -1,6 +1,9 @@
 import 'package:best_flutter_ui_templates/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'meetingroom/model/hotel_list_data.dart';
 import 'model/homelist.dart';
+import 'services/database.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key key}) : super(key: key);
@@ -34,6 +37,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    // return StreamProvider<List<meetingroom>>.value(
+    //   value: DatabaseService().brews,
+    //   child: Scaffold(
     return Scaffold(
       backgroundColor: AppTheme.white,
       body: FutureBuilder<bool>(
@@ -113,6 +119,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           }
         },
       ),
+      // ),
     );
   }
 

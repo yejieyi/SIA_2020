@@ -1,4 +1,4 @@
-import 'package:best_flutter_ui_templates/hotel_booking/hotel_app_theme.dart';
+import 'package:best_flutter_ui_templates/meetingroom/hotel_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
@@ -15,7 +15,7 @@ class HotelListView extends StatelessWidget {
       : super(key: key);
 
   final VoidCallback callback;
-  final HotelListData hotelData;
+  final meetingroom hotelData;
   final AnimationController animationController;
   final Animation<dynamic> animation;
 
@@ -103,53 +103,53 @@ class HotelListView extends StatelessWidget {
                                                 const SizedBox(
                                                   width: 4,
                                                 ),
-                                                Icon(
-                                                  FontAwesomeIcons.mapMarkerAlt,
-                                                  size: 12,
-                                                  color: HotelAppTheme
-                                                          .buildLightTheme()
-                                                      .primaryColor,
-                                                ),
-                                                Expanded(
-                                                  child: Text(
-                                                    '${hotelData.dist.toStringAsFixed(1)} km to city',
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: TextStyle(
-                                                        fontSize: 14,
-                                                        color: Colors.grey
-                                                            .withOpacity(0.8)),
-                                                  ),
-                                                ),
+                                                // Icon(
+                                                //   FontAwesomeIcons.mapMarkerAlt,
+                                                //   size: 12,
+                                                //   color: HotelAppTheme
+                                                //           .buildLightTheme()
+                                                //       .primaryColor,
+                                                // ),
+                                                // Expanded(
+                                                //   child: Text(
+                                                //     '${hotelData.dist.toStringAsFixed(1)} km to city',
+                                                //     overflow:
+                                                //         TextOverflow.ellipsis,
+                                                //     style: TextStyle(
+                                                //         fontSize: 14,
+                                                //         color: Colors.grey
+                                                //             .withOpacity(0.8)),
+                                                //   ),
+                                                // ),
                                               ],
                                             ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 4),
-                                              child: Row(
-                                                children: <Widget>[
-                                                  SmoothStarRating(
-                                                    allowHalfRating: true,
-                                                    starCount: 5,
-                                                    rating: hotelData.rating,
-                                                    size: 20,
-                                                    color: HotelAppTheme
-                                                            .buildLightTheme()
-                                                        .primaryColor,
-                                                    borderColor: HotelAppTheme
-                                                            .buildLightTheme()
-                                                        .primaryColor,
-                                                  ),
-                                                  Text(
-                                                    ' ${hotelData.reviews} Reviews',
-                                                    style: TextStyle(
-                                                        fontSize: 14,
-                                                        color: Colors.grey
-                                                            .withOpacity(0.8)),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
+                                            // Padding(
+                                            //   padding:
+                                            //       const EdgeInsets.only(top: 4),
+                                            //   child: Row(
+                                            //     children: <Widget>[
+                                            //       SmoothStarRating(
+                                            //         allowHalfRating: true,
+                                            //         starCount: 5,
+                                            //         rating: hotelData.rating,
+                                            //         size: 20,
+                                            //         color: HotelAppTheme
+                                            //                 .buildLightTheme()
+                                            //             .primaryColor,
+                                            //         borderColor: HotelAppTheme
+                                            //                 .buildLightTheme()
+                                            //             .primaryColor,
+                                            //       ),
+                                            //       Text(
+                                            //         ' ${hotelData.reviews} Reviews',
+                                            //         style: TextStyle(
+                                            //             fontSize: 14,
+                                            //             color: Colors.grey
+                                            //                 .withOpacity(0.8)),
+                                            //       ),
+                                            //     ],
+                                            //   ),
+                                            // ),
                                           ],
                                         ),
                                       ),
@@ -164,21 +164,30 @@ class HotelListView extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: <Widget>[
-                                        Text(
-                                          '\$${hotelData.perNight}',
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 22,
+                                        Container(
+                                          child: RaisedButton(
+                                            onPressed: () {},
+                                            textColor: Colors.white,
+                                            padding: const EdgeInsets.all(0.0),
+                                            child: const Text('Book',
+                                                style: TextStyle(fontSize: 20)),
                                           ),
                                         ),
-                                        Text(
-                                          '/per night',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              color:
-                                                  Colors.grey.withOpacity(0.8)),
-                                        ),
+                                        // Text(
+                                        //   '\$${hotelData.perNight}',
+                                        //   textAlign: TextAlign.left,
+                                        //   style: TextStyle(
+                                        //     fontWeight: FontWeight.w600,
+                                        //     fontSize: 22,
+                                        //   ),
+                                        // ),
+                                        // Text(
+                                        //   '/per night',
+                                        //   style: TextStyle(
+                                        //       fontSize: 14,
+                                        //       color:
+                                        //           Colors.grey.withOpacity(0.8)),
+                                        // ),
                                       ],
                                     ),
                                   ),
