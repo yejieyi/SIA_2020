@@ -21,6 +21,7 @@ class HotelListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int _value = 1;
     return AnimatedBuilder(
       animation: animationController,
       builder: (BuildContext context, Widget child) {
@@ -166,7 +167,83 @@ class HotelListView extends StatelessWidget {
                                       children: <Widget>[
                                         Container(
                                           child: RaisedButton(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              Future<void>
+                                                  _showMyDialog() async {
+                                                return showDialog<void>(
+                                                  context: context,
+                                                  barrierDismissible:
+                                                      false, // user must tap button!
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return AlertDialog(
+                                                      title: Text(
+                                                          'Book meeting room'),
+                                                      content:
+                                                          SingleChildScrollView(
+                                                        child: ListBody(
+                                                          children: <Widget>[
+                                                            // Text(
+                                                            //     'This is a demo alert dialog.'),
+                                                            Text(
+                                                                'How long would you like to book this room for?'),
+                                                            DropdownButton(
+                                                                value: _value,
+                                                                items: [
+                                                                  DropdownMenuItem(
+                                                                    child: Text(
+                                                                        "1 hour"),
+                                                                    value: 1,
+                                                                  ),
+                                                                  DropdownMenuItem(
+                                                                    child: Text(
+                                                                        "2 hour"),
+                                                                    value: 2,
+                                                                  ),
+                                                                  DropdownMenuItem(
+                                                                      child: Text(
+                                                                          "3 hour"),
+                                                                      value: 3),
+                                                                  DropdownMenuItem(
+                                                                      child: Text(
+                                                                          "4 hour"),
+                                                                      value: 4)
+                                                                ],
+                                                                onChanged:
+                                                                    (value) {
+                                                                  // setState(() {
+                                                                  //   _value =
+                                                                  //       value;
+                                                                  // });
+                                                                }),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      actions: <Widget>[
+                                                        FlatButton(
+                                                          child: Text('Cancel'),
+                                                          onPressed: () {
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
+                                                          },
+                                                        ),
+                                                        FlatButton(
+                                                          child: Text('Book'),
+                                                          onPressed: () {
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
+                                                          },
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              }
+
+                                              _showMyDialog();
+                                            },
                                             textColor: Colors.white,
                                             padding: const EdgeInsets.all(0.0),
                                             child: const Text('Book',

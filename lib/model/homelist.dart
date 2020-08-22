@@ -39,5 +39,10 @@ class HomeList {
       navigateScreen: showersScreen(),
       color: 300,
     ),
+    HomeList(
+      imagePath: 'Heatmap',
+      navigateScreen: showersScreen(),
+      color: 300,
+    ),
   ];
 }
