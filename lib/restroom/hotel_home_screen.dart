@@ -588,34 +588,80 @@ class _BrewListState extends State<BrewList> with TickerProviderStateMixin {
             pinned: false,
             floating: false,
             delegate: ContestTabHeader(
-              getFilterBarUI(hotelList.length),
+              getFilterBarUI(hotelList.length - 1),
             ),
           ),
         ];
       },
       body: Container(
-        color: HotelAppTheme.buildLightTheme().backgroundColor,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/hotel/restroom.png'),
+                fit: BoxFit.cover)),
+        // color: HotelAppTheme.buildLightTheme().backgroundColor,
         // child: BrewList(),
-        child: ListView.builder(
-          itemCount: hotelList.length,
-          padding: const EdgeInsets.only(top: 8),
+        child: GridView(
+          padding: const EdgeInsets.only(top: 220, left: 20, right: 20),
+          physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
-          itemBuilder: (BuildContext context, int index) {
-            final int count = hotelList.length > 10 ? 10 : hotelList.length;
-            final Animation<double> animation =
-                Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-                    parent: animationController,
-                    curve: Interval((1 / count) * index, 1.0,
-                        curve: Curves.fastOutSlowIn)));
-            animationController.forward();
-            return HotelListView(
-              callback: () {},
-              hotelData: hotelList[index],
-              animation: animation,
-              animationController: animationController,
-            );
-          },
+          children: List<Widget>.generate(
+            hotelList.length,
+            (int index) {
+              final int count = hotelList.length;
+              final Animation<double> animation =
+                  Tween<double>(begin: 0.0, end: 1.0).animate(
+                CurvedAnimation(
+                  parent: animationController,
+                  curve: Interval((1 / count) * index, 1.0,
+                      curve: Curves.fastOutSlowIn),
+                ),
+              );
+              animationController.forward();
+
+              return HotelListView(
+                animation: animation,
+                animationController: animationController,
+                hotelData: hotelList[index],
+                callback: () {},
+                // callBack: () {
+                //   Navigator.push<dynamic>(
+                //     context,
+                //     MaterialPageRoute<dynamic>(
+                //       builder: (BuildContext context) =>
+                //           hotelList[index].navigateScreen,
+                //     ),
+                //   );
+                // },
+              );
+            },
+          ),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: true ? 2 : 1,
+            mainAxisSpacing: 25.0,
+            crossAxisSpacing: 125,
+            childAspectRatio: 2,
+          ),
         ),
+        // child: ListView.builder(
+        //   itemCount: hotelList.length,
+        //   padding: const EdgeInsets.only(top: 8),
+        //   scrollDirection: Axis.vertical,
+        //   itemBuilder: (BuildContext context, int index) {
+        //     final int count = hotelList.length > 10 ? 10 : hotelList.length;
+        //     final Animation<double> animation =
+        //         Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+        //             parent: animationController,
+        //             curve: Interval((1 / count) * index, 1.0,
+        //                 curve: Curves.fastOutSlowIn)));
+        //     animationController.forward();
+        //     return HotelListView(
+        //       callback: () {},
+        //       hotelData: hotelList[index],
+        //       animation: animation,
+        //       animationController: animationController,
+        //     );
+        //   },
+        // ),
       ),
     );
     // return ListView.builder(
