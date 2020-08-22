@@ -22,8 +22,8 @@ class _FlightScreenState extends State<FlightScreen> {
           backgroundColor: AppTheme.nearlyWhite,
           body: SingleChildScrollView(
             child: SizedBox(
-              height: MediaQuery.of(context).size.height,
-              // height: 30,
+              // height: MediaQuery.of(context).size.height,
+              height: 600,
               child: Column(
                 children: <Widget>[
                   Expanded(

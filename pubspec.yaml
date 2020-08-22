@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -34,6 +35,8 @@ dependencies:
   firebase_auth: ^0.14.0+5
   cloud_firestore: ^0.12.9+4
   provider: ^3.1.0
+  flutter_web: any
+  flutter_web_ui: any
 
 dev_dependencies:
   flutter_test:
@@ -87,3 +90,12 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+dependency_overrides:
+      flutter_web:
+        git:
+          url: https://github.com/flutter/flutter_web
+          path: packages/flutter_web
+      flutter_web_ui:
+        git:
+          url: https://github.com/flutter/flutter_web
+          path: packages/flutter_web_ui

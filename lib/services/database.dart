@@ -1,4 +1,5 @@
 // import 'package:brew_crew/models/brew.dart';
+import 'package:best_flutter_ui_templates/heatmap/model/hotel_list_data.dart';
 import 'package:best_flutter_ui_templates/meetingroom/model/hotel_list_data.dart';
 import 'package:best_flutter_ui_templates/nurse/model/hotel_list_data.dart';
 import 'package:best_flutter_ui_templates/restroom/model/hotel_list_data.dart';
@@ -18,6 +19,8 @@ class DatabaseService {
       Firestore.instance.collection('showers');
   final CollectionReference nrCollection =
       Firestore.instance.collection('nursingrooms');
+  final CollectionReference hmCollection =
+      Firestore.instance.collection('heatmap');
 
   // Future<void> updateUserData(String sugars, String name, int strength) async {
   //   return await mrCollection.document(uid).setData({
@@ -98,5 +101,24 @@ class DatabaseService {
   Stream<List<nurser>> get nurses {
     print(nrCollection.snapshots());
     return nrCollection.orderBy('id').snapshots().map(_nrListFromSnapshot);
+  }
+
+  List<heatmap> _hmListFromSnapshot(QuerySnapshot snapshot) {
+    print(snapshot.documents);
+    return snapshot.documents.map((doc) {
+      // print(doc.data['title']);
+      return heatmap(
+
+          // titleTxt: doc.data['id'] ?? '',
+          gradient: doc.data['pressure'] ?? '');
+      // subTxt: doc.data['desc'] ?? '',
+      // avail: doc.data['availability'] ?? false);
+    }).toList();
+  }
+
+  // get brews stream
+  Stream<List<heatmap>> get heatmaps {
+    print(hmCollection.snapshots());
+    return hmCollection.snapshots().map(_hmListFromSnapshot);
   }
 }

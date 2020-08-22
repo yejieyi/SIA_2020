@@ -1,5 +1,6 @@
 import 'package:best_flutter_ui_templates/design_course/home_design_course.dart';
 import 'package:best_flutter_ui_templates/fitness_app/fitness_app_home_screen.dart';
+import 'package:best_flutter_ui_templates/heatmap/hotel_home_screen.dart';
 import 'package:best_flutter_ui_templates/meetingroom/hotel_home_screen.dart';
 import 'package:best_flutter_ui_templates/nurse/hotel_home_screen.dart';
 // import 'package:best_flutter_ui_templates/meetingroom/hotel_home_screen.dart';
@@ -41,7 +42,7 @@ class HomeList {
     ),
     HomeList(
       imagePath: 'Heatmap',
-      navigateScreen: showersScreen(),
+      navigateScreen: heatmapScreen(),
       color: 300,
     ),
   ];
