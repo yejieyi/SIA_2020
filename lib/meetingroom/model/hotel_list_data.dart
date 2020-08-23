@@ -7,12 +7,14 @@ class meetingroom {
     // this.reviews = 80,
     // this.rating = 4.5,
     // this.perNight = 180,
+    this.time = 0,
     this.avail = true,
   });
 
   String imagePath;
   String titleTxt;
   String subTxt;
+  int time;
   // double dist;
   // double rating;
   // int reviews;

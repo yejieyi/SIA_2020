@@ -1,5 +1,6 @@
 import 'package:best_flutter_ui_templates/meetingroom/hotel_app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
@@ -22,6 +23,7 @@ class HotelListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int _value = 1;
+    int time = hotelData.time;
     return AnimatedBuilder(
       animation: animationController,
       builder: (BuildContext context, Widget child) {
@@ -124,6 +126,43 @@ class HotelListView extends StatelessWidget {
                                                 // ),
                                               ],
                                             ),
+                                            Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: <Widget>[
+                                                Text(
+                                                  hotelData.avail
+                                                      ? "Available Now"
+                                                      : "Available in $time hours",
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Colors.black),
+                                                ),
+                                                const SizedBox(
+                                                  width: 4,
+                                                ),
+                                                // Icon(
+                                                //   FontAwesomeIcons.mapMarkerAlt,
+                                                //   size: 12,
+                                                //   color: HotelAppTheme
+                                                //           .buildLightTheme()
+                                                //       .primaryColor,
+                                                // ),
+                                                // Expanded(
+                                                //   child: Text(
+                                                //     '${hotelData.dist.toStringAsFixed(1)} km to city',
+                                                //     overflow:
+                                                //         TextOverflow.ellipsis,
+                                                //     style: TextStyle(
+                                                //         fontSize: 14,
+                                                //         color: Colors.grey
+                                                //             .withOpacity(0.8)),
+                                                //   ),
+                                                // ),
+                                              ],
+                                            ),
                                             // Padding(
                                             //   padding:
                                             //       const EdgeInsets.only(top: 4),
@@ -166,89 +205,217 @@ class HotelListView extends StatelessWidget {
                                           CrossAxisAlignment.end,
                                       children: <Widget>[
                                         Container(
-                                          child: RaisedButton(
-                                            onPressed: () {
-                                              Future<void>
-                                                  _showMyDialog() async {
-                                                return showDialog<void>(
-                                                  context: context,
-                                                  barrierDismissible:
-                                                      false, // user must tap button!
-                                                  builder:
-                                                      (BuildContext context) {
-                                                    return AlertDialog(
-                                                      title: Text(
-                                                          'Book meeting room'),
-                                                      content:
-                                                          SingleChildScrollView(
-                                                        child: ListBody(
-                                                          children: <Widget>[
-                                                            // Text(
-                                                            //     'This is a demo alert dialog.'),
-                                                            Text(
-                                                                'How long would you like to book this room for?'),
-                                                            DropdownButton(
-                                                                value: _value,
-                                                                items: [
-                                                                  DropdownMenuItem(
-                                                                    child: Text(
-                                                                        "1 hour"),
-                                                                    value: 1,
-                                                                  ),
-                                                                  DropdownMenuItem(
-                                                                    child: Text(
-                                                                        "2 hour"),
-                                                                    value: 2,
-                                                                  ),
-                                                                  DropdownMenuItem(
-                                                                      child: Text(
-                                                                          "3 hour"),
-                                                                      value: 3),
-                                                                  DropdownMenuItem(
-                                                                      child: Text(
-                                                                          "4 hour"),
-                                                                      value: 4)
+                                          child: hotelData.avail
+                                              ? RaisedButton(
+                                                  onPressed: () {
+                                                    Future<void>
+                                                        _showMyDialog() async {
+                                                      return showDialog<void>(
+                                                        context: context,
+                                                        barrierDismissible:
+                                                            false, // user must tap button!
+                                                        builder: (BuildContext
+                                                            context) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'Book meeting room'),
+                                                            content:
+                                                                SingleChildScrollView(
+                                                              child: ListBody(
+                                                                children: <
+                                                                    Widget>[
+                                                                  // Text(
+                                                                  //     'This is a demo alert dialog.'),
+                                                                  Text(
+                                                                      'How long would you like to book this room for?'),
+                                                                  DropdownButton(
+                                                                      value:
+                                                                          _value,
+                                                                      items: [
+                                                                        DropdownMenuItem(
+                                                                          child:
+                                                                              Text("1 hour"),
+                                                                          value:
+                                                                              1,
+                                                                        ),
+                                                                        DropdownMenuItem(
+                                                                          child:
+                                                                              Text("2 hour"),
+                                                                          value:
+                                                                              2,
+                                                                        ),
+                                                                        DropdownMenuItem(
+                                                                            child:
+                                                                                Text("3 hour"),
+                                                                            value: 3),
+                                                                        DropdownMenuItem(
+                                                                            child:
+                                                                                Text("4 hour"),
+                                                                            value: 4)
+                                                                      ],
+                                                                      onChanged:
+                                                                          (value) {
+                                                                        // setState(() {
+                                                                        //   _value =
+                                                                        //       value;
+                                                                        // });
+                                                                      }),
                                                                 ],
-                                                                onChanged:
-                                                                    (value) {
-                                                                  // setState(() {
-                                                                  //   _value =
-                                                                  //       value;
-                                                                  // });
-                                                                }),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      actions: <Widget>[
-                                                        FlatButton(
-                                                          child: Text('Cancel'),
-                                                          onPressed: () {
-                                                            Navigator.of(
-                                                                    context)
-                                                                .pop();
-                                                          },
-                                                        ),
-                                                        FlatButton(
-                                                          child: Text('Book'),
-                                                          onPressed: () {
-                                                            Navigator.of(
-                                                                    context)
-                                                                .pop();
-                                                          },
-                                                        ),
-                                                      ],
-                                                    );
-                                                  },
-                                                );
-                                              }
+                                                              ),
+                                                            ),
+                                                            actions: <Widget>[
+                                                              FlatButton(
+                                                                child: Text(
+                                                                    'Cancel'),
+                                                                onPressed: () {
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                },
+                                                              ),
+                                                              FlatButton(
+                                                                child: Text(
+                                                                    'Book'),
+                                                                onPressed: () {
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                },
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
+                                                    }
 
-                                              _showMyDialog();
-                                            },
-                                            textColor: Colors.white,
-                                            padding: const EdgeInsets.all(0.0),
-                                            child: const Text('Book',
-                                                style: TextStyle(fontSize: 20)),
-                                          ),
+                                                    _showMyDialog();
+                                                  },
+                                                  textColor: Colors.white,
+                                                  padding:
+                                                      const EdgeInsets.all(0.0),
+                                                  child: const Text('Book',
+                                                      style: TextStyle(
+                                                          fontSize: 20)),
+                                                )
+                                              : RaisedButton(
+                                                  onPressed: () {
+                                                    Future<void>
+                                                        _showMyDialog() async {
+                                                      return showDialog<void>(
+                                                        context: context,
+                                                        barrierDismissible:
+                                                            false, // user must tap button!
+                                                        builder: (BuildContext
+                                                            context) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'Book meeting room'),
+                                                            content:
+                                                                SingleChildScrollView(
+                                                              child: ListBody(
+                                                                children: <
+                                                                    Widget>[
+                                                                  // Text(
+                                                                  //     'This is a demo alert dialog.'),
+                                                                  Text(
+                                                                      'Start time:'),
+                                                                  FlatButton(
+                                                                      onPressed:
+                                                                          () {
+                                                                        DatePicker.showTimePicker(
+                                                                            context,
+                                                                            showTitleActions:
+                                                                                true,
+                                                                            showSecondsColumn:
+                                                                                false,
+                                                                            onChanged:
+                                                                                (date) {
+                                                                          print('change $date in time zone ' +
+                                                                              date.timeZoneOffset.inHours.toString());
+                                                                        }, onConfirm:
+                                                                                (date) {
+                                                                          print(
+                                                                              'confirm $date');
+                                                                        }, currentTime: DateTime.now().add(new Duration(hours: hotelData.time)));
+                                                                      },
+                                                                      child:
+                                                                          Text(
+                                                                        'show time picker',
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.blue),
+                                                                      )),
+                                                                  Text(
+                                                                      'How long would you like to book this room for?'),
+                                                                  DropdownButton(
+                                                                      value:
+                                                                          _value,
+                                                                      items: [
+                                                                        DropdownMenuItem(
+                                                                          child:
+                                                                              Text("1 hour"),
+                                                                          value:
+                                                                              1,
+                                                                        ),
+                                                                        DropdownMenuItem(
+                                                                          child:
+                                                                              Text("2 hour"),
+                                                                          value:
+                                                                              2,
+                                                                        ),
+                                                                        DropdownMenuItem(
+                                                                            child:
+                                                                                Text("3 hour"),
+                                                                            value: 3),
+                                                                        DropdownMenuItem(
+                                                                            child:
+                                                                                Text("4 hour"),
+                                                                            value: 4)
+                                                                      ],
+                                                                      onChanged:
+                                                                          (value) {
+                                                                        // setState(() {
+                                                                        //   _value =
+                                                                        //       value;
+                                                                        // });
+                                                                      }),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            actions: <Widget>[
+                                                              FlatButton(
+                                                                child: Text(
+                                                                    'Cancel'),
+                                                                onPressed: () {
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                },
+                                                              ),
+                                                              FlatButton(
+                                                                child: Text(
+                                                                    'Reserve'),
+                                                                onPressed: () {
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                },
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
+                                                    }
+
+                                                    _showMyDialog();
+                                                  },
+                                                  textColor: Colors.white,
+                                                  padding:
+                                                      const EdgeInsets.all(0.0),
+                                                  child: const Text('Reserve',
+                                                      style: TextStyle(
+                                                          fontSize: 20)),
+                                                ),
                                         ),
                                         // Text(
                                         //   '\$${hotelData.perNight}',
@@ -304,5 +471,80 @@ class HotelListView extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+class CustomPicker extends CommonPickerModel {
+  String digits(int value, int length) {
+    return '$value'.padLeft(length, "0");
+  }
+
+  CustomPicker({DateTime currentTime, LocaleType locale})
+      : super(locale: locale) {
+    this.currentTime = currentTime ?? DateTime.now();
+    this.setLeftIndex(this.currentTime.hour);
+    this.setMiddleIndex(this.currentTime.minute);
+    this.setRightIndex(this.currentTime.second);
+  }
+
+  @override
+  String leftStringAtIndex(int index) {
+    if (index >= 0 && index < 24) {
+      return this.digits(index, 2);
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  String middleStringAtIndex(int index) {
+    if (index >= 0 && index < 60) {
+      return this.digits(index, 2);
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  String rightStringAtIndex(int index) {
+    if (index >= 0 && index < 60) {
+      return this.digits(index, 2);
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  String leftDivider() {
+    return "|";
+  }
+
+  @override
+  String rightDivider() {
+    return "|";
+  }
+
+  @override
+  List<int> layoutProportions() {
+    return [1, 2, 1];
+  }
+
+  @override
+  DateTime finalTime() {
+    return currentTime.isUtc
+        ? DateTime.utc(
+            currentTime.year,
+            currentTime.month,
+            currentTime.day,
+            this.currentLeftIndex(),
+            this.currentMiddleIndex(),
+            this.currentRightIndex())
+        : DateTime(
+            currentTime.year,
+            currentTime.month,
+            currentTime.day,
+            this.currentLeftIndex(),
+            this.currentMiddleIndex(),
+            this.currentRightIndex());
   }
 }

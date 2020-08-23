@@ -39,6 +39,7 @@ class DatabaseService {
           titleTxt: doc.data['title'] ?? '',
           imagePath: doc.data['img'] ?? '',
           subTxt: doc.data['desc'] ?? '',
+          time: doc.data['time'] ?? 0,
           avail: doc.data['availability'] ?? false);
     }).toList();
   }
